@@ -192,7 +192,6 @@ func GenerateSite() error {
 				numArticles,
 				time.Now().Format(dateFormat),
 				"<a href=\"https://github.com/ivan-du-toit/readingList\" rel=\"noopener\"><code>ivan-du-toit/readingList</code></a>",
-				"<a href=\"https://github.com/codemicro/readingList\" rel=\"noopener\"><code>codemicro/readingList</code></a>",
 			),
 		)),
 	)
