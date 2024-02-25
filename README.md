@@ -9,7 +9,7 @@ A list of articles I've read. Personal fork from https://github.com/codemicro/re
 3. URL encode and update bookmark.
 
 ```javascript
-javascript:(function(){javascript:(function(){javascript:(() => {
+javascript:(() => {
     const requestURL = "https://ivan-du-toit.github.io/readingList/save";
     const token = "";
 
@@ -73,5 +73,5 @@ javascript:(function(){javascript:(function(){javascript:(() => {
     searchParams.set("token", token);
 
     window.location.href = url;
-})();})();})();
+})();
 ```
