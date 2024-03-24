@@ -6,17 +6,18 @@ A list of articles I've read. Personal fork from https://github.com/codemicro/re
 
 1. Create new token
 2. Add token to script below
-3. URL encode and update bookmark.
+3. Compress, URL encode and update bookmark. (https://jscompress.com, https://caiorss.github.io/bookmarklet-maker/)
 
 ```javascript
 javascript:(() => {
     const requestURL = "https://ivan-du-toit.github.io/readingList/save";
-    const token = "";
+    const token = ""; //Add the token secret.
 
     const pageTitle = document.title;
     const pageURL = window.location.href;
     let metaImage = "";
     let metaDescription = "";
+    let wordCount = "";
 
     function getMetaValue(propName) {
         const x = document.getElementsByTagName("meta");
@@ -61,7 +62,13 @@ javascript:(() => {
         }
     }
 
-    console.log("BOOKMARKET PRESSED:", pageTitle, pageURL, metaDescription, metaImage);
+    {
+        let maxL = 0;
+        document.querySelectorAll('article').forEach(a => maxL = Math.max(a.innerText.toString().length, maxL));
+        wordCount = maxL > 0 ? maxL : "";
+    }
+
+    console.log("BOOKMARKET PRESSED:", pageTitle, pageURL, metaDescription, metaImage, wordCount);
 
     const url = new URL(requestURL);
     const searchParams = url.searchParams;
@@ -69,6 +76,7 @@ javascript:(() => {
     searchParams.set("url", pageURL);
     searchParams.set("description", metaDescription);
     searchParams.set("image", metaImage);
+    searchParams.set("wordCount", wordCount);
     searchParams.set("nexturl", pageURL);
     searchParams.set("token", token);
 
