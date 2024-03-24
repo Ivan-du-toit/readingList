@@ -131,7 +131,8 @@ func makeListHTML(groups []*entryGroup) g.Node {
 				article.Title,
 				article.Description,
 				article.Date.Format(dateFormat),
-				article.HackerNewsURL),
+				article.HackerNewsURL,
+				article.WordCount),
 			)
 
 		}
@@ -142,7 +143,7 @@ func makeListHTML(groups []*entryGroup) g.Node {
 	return Div(parts...)
 }
 
-func articleLinkComponent(url, title, description, date, hnURL string) g.Node {
+func articleLinkComponent(url, title, description, date, hnURL, WordCount string) g.Node {
 	return Li(
 		A(g.Attr("href", url), g.Text(title)),
 		g.Text(" - "+date),
@@ -159,6 +160,7 @@ func articleLinkComponent(url, title, description, date, hnURL string) g.Node {
 				)),
 		})),
 		g.If(description != "", Span(g.Attr("class", "secondary"), g.Text(" - "+description))),
+		g.If(WordCount != "", Span(g.Text(" - "+WordCount+" words"))),
 	)
 }
 

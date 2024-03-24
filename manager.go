@@ -67,6 +67,7 @@ func AddRowToCSV() error {
 		Image:         data.Image,
 		Date:          time.Now(),
 		HackerNewsURL: hnURL,
+		WordCount:     data.WordCount,
 	}})
 	if err != nil {
 		return err
